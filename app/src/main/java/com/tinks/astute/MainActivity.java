@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int current = 0;
 
     ListView listView;
-    Button nav;
+    ImageView nav;
     Button faves;
     Button profile;
     Button sessions;
@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             R.drawable.ic_launcher,
             R.drawable.ic_launcher,
             R.drawable.ic_launcher,
-            R.drawable.ic_launcher
+            R.drawable.ic_launcher,
+            R.drawable.ic_launcher,
+            R.drawable.ic_launcher,
+            R.drawable.ic_launcher,
     };
 
     Integer[] members = {
@@ -72,15 +75,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             8,
             1,
             5,
-            2
+            2,
+            3,
+            8,
+            5
     };
 
     Integer[] times = {
             5,
             15,
+            20,
             23,
             30,
             32,
+            35,
+            39,
             45,
             50,
             60,
@@ -97,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Get objects from xml
         listView = (ListView) findViewById(R.id.list);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
-        nav = (Button) findViewById(R.id.nav);
+        nav = (ImageView) findViewById(R.id.nav);
         faves = (Button) findViewById(R.id.faves);
         profile = (Button) findViewById(R.id.profile);
         sessions = (Button) findViewById(R.id.sessions);
@@ -121,6 +130,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.add("ENGL 310\nSwem 163");
         values.add("PSYCH 201\nSwem 264");
         values.add("HIST 320\nBlow 331");
+        values.add("CHEM 103\nSwem 230");
+        values.add("PHYS 420\nSwem Read & Relax");
+        values.add("MATH 214\nTuck 110");
 
 
         // Define a new Adapter
@@ -152,11 +164,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         nav.setOnClickListener(new View.OnClickListener() {
+
+            @Override
             public void onClick(View v) {
-                // Perform action on click
-                Toast.makeText(getApplicationContext(),"dope",Toast.LENGTH_LONG).show();
+
+                mDrawerLayout.openDrawer(mDrawer);
+
             }
         });
+
 
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
