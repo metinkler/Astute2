@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_height="150dp"
+    android:layout_width="match_parent">
+    <group android:checkableBehavior="single" android:id="@+id/group1">
+        <item
+            android:id="@+id/navigation_item_1"
+            android:orderInCategory="1"
+            android:title="CSCI304"/>
+        <item
+            android:id="@+id/navigation_item_2"
+            android:orderInCategory="1"
+            android:title="MATH214"/>
+    </group>
+    <group android:checkableBehavior="single" android:id="@+id/group2">
+        <item
+            android:id="@+id/add_class"
+            android:orderInCategory="10000"
+            android:checkable="false"
+            android:title="+ Add Class" />
+    </group>
+</menu>
