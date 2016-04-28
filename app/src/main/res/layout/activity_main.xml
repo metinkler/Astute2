@@ -38,33 +38,70 @@
             android:layout_height="450dp"
             android:layout_width="match_parent">
         </ListView>
-        <Button
+        <ImageView
             android:id="@+id/faves"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:padding="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_below="@id/list"
             android:background="@drawable/faves"/>
-        <Button
+        <ImageView
             android:id="@+id/sessions"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="10dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/faves"
             android:layout_below="@id/list"
             android:background="@drawable/sessions"/>
-        <Button
+        <ImageView
             android:id="@+id/add"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:padding="10dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/sessions"
             android:layout_below="@id/list"
             android:background="@drawable/add"/>
-        <Button
+        <ImageView
             android:id="@+id/profile"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/add"
             android:layout_below="@id/list"
-            android:background="@drawable/profile"/>
+            android:background="@drawable/profilez"/>
+
+        <TextView
+            android:id="@+id/favorites"
+            android:text="Favorites"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/faves"/>
+        <TextView
+            android:id="@+id/sessionz"
+            android:text="My Sessions"
+            android:layout_marginLeft="130dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sessions"/>
+        <TextView
+            android:id="@+id/plus"
+            android:text="Add Session"
+            android:layout_marginLeft="240dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add"/>
+        <TextView
+            android:id="@+id/person"
+            android:text="Profile"
+            android:layout_marginLeft="350dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile"/>
+
     </RelativeLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/main_drawer"

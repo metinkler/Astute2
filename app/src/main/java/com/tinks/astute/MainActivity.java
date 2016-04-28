@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ListView listView;
     ImageView nav;
-    Button faves;
-    Button profile;
-    Button sessions;
-    Button add;
+    ImageView faves;
+    ImageView profile;
+    ImageView sessions;
+    ImageView add;
 
     // Search EditText
     EditText inputSearch;
@@ -107,10 +107,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         listView = (ListView) findViewById(R.id.list);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
         nav = (ImageView) findViewById(R.id.nav);
-        faves = (Button) findViewById(R.id.faves);
-        profile = (Button) findViewById(R.id.profile);
-        sessions = (Button) findViewById(R.id.sessions);
-        add = (Button) findViewById(R.id.add);
+        faves = (ImageView) findViewById(R.id.faves);
+        profile = (ImageView) findViewById(R.id.profile);
+        sessions = (ImageView) findViewById(R.id.sessions);
+        add = (ImageView) findViewById(R.id.add);
 
         //Start navigation drawer
         drawerToggle=new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         });
 
+        // navigation button opens the navigation drawer as well
         nav.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -204,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        // filters news feed
         inputSearch.addTextChangedListener(new TextWatcher() {
 
             @Override
