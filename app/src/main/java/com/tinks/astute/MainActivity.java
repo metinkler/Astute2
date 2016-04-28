@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ListView listView;
     Button nav;
+    Button faves;
+    Button profile;
+    Button sessions;
+    Button add;
 
     // Search EditText
     EditText inputSearch;
@@ -90,10 +94,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initView();
         Intent intent = getIntent();
 
-        // Get ListView object from xml
+        // Get objects from xml
         listView = (ListView) findViewById(R.id.list);
         inputSearch = (EditText) findViewById(R.id.inputSearch);
         nav = (Button) findViewById(R.id.nav);
+        faves = (Button) findViewById(R.id.faves);
+        profile = (Button) findViewById(R.id.profile);
+        sessions = (Button) findViewById(R.id.sessions);
+        add = (Button) findViewById(R.id.add);
 
         //Start navigation drawer
         drawerToggle=new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -147,6 +155,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 // Perform action on click
                 Toast.makeText(getApplicationContext(),"dope",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // start new activity here
+                // Perform action on click
+                Toast.makeText(getApplicationContext(),"adding class",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Toast.makeText(getApplicationContext(),"Takes user to their profile",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        sessions.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Go to sessions page?
+                // Perform action on click
+                Toast.makeText(getApplicationContext(),"Shows users sessions they are currently a part of",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        faves.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Toast.makeText(getApplicationContext(),"Shows user their favorite classes",Toast.LENGTH_LONG).show();
             }
         });
 

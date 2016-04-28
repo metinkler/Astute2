@@ -4,6 +4,7 @@ package com.tinks.astute;
  * Created by tinks on 4/25/16.
  */
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,14 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
         return rowView;
 
     };
+
+    // trying to start join session here
+    /*
+    private void startJoinSession(){
+        Intent i = new Intent(context, JoinSession.class);
+        context.startActivity(i);
+    }
+    */
 
     //For this helper method, return based on filteredData
     public int getCount()

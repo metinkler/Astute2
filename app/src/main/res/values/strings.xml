@@ -20,4 +20,5 @@
     <string name="drawer_close">Close</string>
     <string name="compsci">CSCI</string>
     <string name="cs301">301</string>
+    <string name="title_activity_join_session">JoinSession</string>
 </resources>

@@ -24,8 +24,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ClassScrollActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ClassScrollActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".JoinSession"
+            android:label="@string/title_activity_join_session"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
