@@ -14,6 +14,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -67,9 +68,19 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
         extratxt.setText(Integer.toString(members[position]));
         time.setText(Integer.toString(times[position])+ " m");
 
+        rowView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Intent i = new Intent(context, JoinSession.class);
+                context.startActivity(i);
+            }
+        });
+
+
         return rowView;
 
     };
+
 
     // trying to start join session here
     /*

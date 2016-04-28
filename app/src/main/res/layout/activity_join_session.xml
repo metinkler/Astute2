@@ -10,62 +10,9 @@
         android:layout_height="match_parent"
         tools:context="{relativePackage}.${activityClass}" >
 
-        <Button
-            android:id="@+id/nav"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="5dp"
-            android:background="@drawable/threelines"/>
 
-        <!-- Editext for Search -->
-        <EditText android:id="@+id/inputSearch"
-            android:layout_width="300dp"
-            android:layout_toRightOf="@id/nav"
-            android:layout_height="wrap_content"
-            android:hint="Search..."
-            android:inputType="textVisiblePassword"/>
-
-        <ImageView
-            android:id="@+id/settings"
-            android:layout_toRightOf="@id/inputSearch"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/settings"/>
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_below="@+id/inputSearch"
-            android:layout_height="500dp"
-            android:layout_width="match_parent">
-        </ListView>
-        <Button
-            android:id="@+id/faves"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/list"
-            android:background="@drawable/faves"/>
-        <Button
-            android:id="@+id/sessions"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_toRightOf="@id/faves"
-            android:layout_below="@id/list"
-            android:background="@drawable/sessions"/>
-        <Button
-            android:id="@+id/add"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_toRightOf="@id/sessions"
-            android:layout_below="@id/list"
-            android:background="@drawable/add"/>
-        <Button
-            android:id="@+id/profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_toRightOf="@id/add"
-            android:layout_below="@id/list"
-            android:background="@drawable/profile"/>
     </RelativeLayout>
+
     <android.support.design.widget.NavigationView
         android:id="@+id/main_drawer"
         android:layout_width="wrap_content"
