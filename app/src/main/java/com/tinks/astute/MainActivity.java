@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView profile;
     ImageView sessions;
     ImageView add;
+    ImageView settings;
 
     // Search EditText
     EditText inputSearch;
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile = (ImageView) findViewById(R.id.profile);
         sessions = (ImageView) findViewById(R.id.sessions);
         add = (ImageView) findViewById(R.id.add);
+        settings = (ImageView) findViewById(R.id.settings);
 
         //Start navigation drawer
         drawerToggle=new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -178,8 +180,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // start new activity here
-                // Perform action on click
-                Toast.makeText(getApplicationContext(),"adding class",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(MainActivity.this, JoinSession.class);
+                MainActivity.this.startActivity(i);
             }
         });
 
@@ -202,6 +204,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 // Perform action on click
                 Toast.makeText(getApplicationContext(),"Shows user their favorite classes",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Toast.makeText(getApplicationContext(),"Allows user to edit app settings",Toast.LENGTH_LONG).show();
             }
         });
 

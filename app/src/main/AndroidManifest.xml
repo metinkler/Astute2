@@ -30,7 +30,8 @@
         <activity
             android:name=".JoinSession"
             android:label="@string/title_activity_join_session"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CreateSession"></activity>
     </application>
 
 </manifest>
