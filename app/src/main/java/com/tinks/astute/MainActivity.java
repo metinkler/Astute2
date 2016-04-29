@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     EditText inputSearch;
     CustomListAdapter adapter;
 
-    String newLoc;
+    String newLoc = "";
 
     final ArrayList<Boolean> editable = new ArrayList<Boolean>();
     // Defined Array values to show in ListView
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
 
 
-        newLoc = intent.getStringExtra("location");
+        //newLoc = intent.getStringExtra("location");
 
         TextView text = (TextView) findViewById(R.id.empty);
         text.setVisibility(View.INVISIBLE);
@@ -152,11 +152,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 imgid.add(R.drawable.ic_launcher);
             }
         }
-        else{
-            for (int i = 0; i < values.size()-1;i++){
-                imgid.add(R.drawable.ic_launcher);
-            }
-        }
+       // else{
+       //     for (int i = 0; i < values.size()-1;i++){
+       //         imgid.add(R.drawable.ic_launcher);
+       //     }
+       // }
 
         // adding times
         /*
@@ -173,16 +173,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgid.add(R.drawable.ic_launcher);
         */
 
-        if (newLoc.equals("")){
-            for (int i = 0; i < values.size();i++){
-                editable.add(false);
-            }
-        }
-        else{
-            for (int i = 0; i < values.size()-1;i++){
-                editable.add(false);
-            }
-        }
+      //  if (newLoc.equals("")){
+      //      for (int i = 0; i < values.size();i++){
+      //          editable.add(false);
+      //      }
+      //  }
+      //  else{
+      //      for (int i = 0; i < values.size()-1;i++){
+      //          editable.add(false);
+      //      }
+      //  }
 
         // Define a new Adapter
         this.adapter = new CustomListAdapter(this, values, imgid, members, times);
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 // start new activity here
                 Intent i = new Intent(MainActivity.this, CreateSession.class);
-                MainActivity.this.startActivity(i);
+                startActivityForResult(i, 124);
             }
         });
 
@@ -314,36 +314,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
         Intent intent = getIntent();
-        //Gets information from the class scroller
-        String value = data.getStringExtra("class");
-        Log.v("app", "value " + value);
-        newId++;
-        if(value != null && !value.isEmpty()){
-            int length = added.length;
-            int found = 0;
-            for(int i=0; i<length; i++){
-                if(value.equals(added[i])){
-                    found = 1;
+        if(requestCode == 123) {
+            //Gets information from the class scroller
+            Log.v("myapp", "" + requestCode);
+            String value = data.getStringExtra("class");
+            Log.v("app", "value " + value);
+            newId++;
+            if (value != null && !value.isEmpty()) {
+                int length = added.length;
+                int found = 0;
+                for (int i = 0; i < length; i++) {
+                    if (value.equals(added[i])) {
+                        found = 1;
+                    }
+                }
+                if (found == 1) {
+                    String toastText = "Error: Class is already added!";
+                    Toast.makeText(MainActivity.this, toastText, Toast.LENGTH_LONG).show();
+                } else {
+                    MenuItem newMenuItem = mDrawer.getMenu().add(R.id.group1, newId, 3, value);
+                    newMenuItem.setCheckable(true);
+                    added[current] = value;
+                    current++;
                 }
             }
-            if (found==1){
-                String toastText= "Error: Class is already added!";
-                Toast.makeText(MainActivity.this, toastText , Toast.LENGTH_LONG).show();
-            }
-            else{
-                MenuItem newMenuItem = mDrawer.getMenu().add(R.id.group1, newId, 3, value);
-                newMenuItem.setCheckable(true);
-                added[current] = value;
-                current++;
+            MainActivity.this.adapter.getFilter().filter("");
+            ListView list = (ListView) findViewById(R.id.list);
+            list.setVisibility(View.VISIBLE);
+            TextView text = (TextView) findViewById(R.id.empty);
+            text.setVisibility(View.INVISIBLE);
+        }
+        if(requestCode == 124){
+            Log.v("myapp", "HERE!");
+            //Bundle b=this.getIntent().getExtras();
+            String[] event_data = data.getStringArrayExtra("arr");
+            Log.v("myapp", " " + event_data.length);
+            for(int i = 0; i < event_data.length; i++){
+                Log.v("myapp", " " + event_data[i]);
             }
         }
-        MainActivity.this.adapter.getFilter().filter("");
-        ListView list = (ListView) findViewById(R.id.list);
-        list.setVisibility(View.VISIBLE);
-        TextView text = (TextView) findViewById(R.id.empty);
-        text.setVisibility(View.INVISIBLE);
-
     }
 
     private void setToolbar() {
