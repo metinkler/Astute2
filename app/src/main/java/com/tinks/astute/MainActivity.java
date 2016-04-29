@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onClick(View v) {
-
                 mDrawerLayout.openDrawer(mDrawer);
 
             }
@@ -220,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
-                System.out.println(MainActivity.this.adapter);
                 MainActivity.this.adapter.getFilter().filter(cs);
             }
 
