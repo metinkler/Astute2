@@ -7,8 +7,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         tools:context="{relativePackage}.${activityClass}" >
-
         <ImageView
             android:id="@+id/nav"
             android:layout_width="45dp"
@@ -31,7 +32,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/settings"/>
-
+        <TextView
+            android:id="@+id/empty"
+            android:text="No Sessions Found . . . Try Making Your Own!"
+            android:layout_width="match_parent"
+            android:textColor="@color/textBlack"
+            android:layout_height="450dp"
+            android:gravity="center" />
         <ListView
             android:id="@+id/list"
             android:layout_below="@+id/inputSearch"
@@ -72,35 +79,38 @@
             android:layout_toRightOf="@id/add"
             android:layout_below="@id/list"
             android:background="@drawable/profilez"/>
-
         <TextView
             android:id="@+id/favorites"
             android:text="Favorites"
             android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/faves"/>
+            android:layout_below="@id/faves"
+            android:layout_alignParentBottom="true"/>
         <TextView
             android:id="@+id/sessionz"
             android:text="My Sessions"
             android:layout_marginLeft="130dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sessions"/>
+            android:layout_below="@id/sessions"
+            android:layout_alignParentBottom="true"/>
         <TextView
             android:id="@+id/plus"
             android:text="Add Session"
             android:layout_marginLeft="240dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/add"/>
+            android:layout_below="@id/add"
+            android:layout_alignParentBottom="true"/>
         <TextView
             android:id="@+id/person"
             android:text="Profile"
             android:layout_marginLeft="350dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profile"/>
+            android:layout_below="@id/profile"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
     <android.support.design.widget.NavigationView
