@@ -5,18 +5,15 @@ package com.tinks.astute;
  */
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Random;
 
 import java.util.ArrayList;
 
@@ -27,13 +24,16 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
     private final ArrayList<Integer> imgid;
     private final ArrayList<Integer> members;
     private final ArrayList<Integer> times;
+    private final ArrayList<Boolean> editable;
+
 
     ArrayList<String> objects = new ArrayList<String>();
     ArrayList<String> filteredList = new ArrayList<String>();
 
+
     String item = new String();
 
-    public CustomListAdapter(Activity context, ArrayList<String> itemname, ArrayList<Integer> imgid, ArrayList<Integer> members, ArrayList<Integer> times) {
+    public CustomListAdapter(Activity context, ArrayList<String> itemname, ArrayList<Integer> imgid, ArrayList<Integer> members, ArrayList<Integer> times, ArrayList<Boolean> editable) {
         //super(context, R.layout.list_item, itemname);
         // TODO Auto-generated constructor stub
 
@@ -42,13 +42,14 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
         this.imgid=imgid;
         this.members=members;
         this.times=times;
+        this.editable = editable;
 
         objects = itemname;
         filteredList = itemname;
     }
 
 
-    public View getView(int position,View view,ViewGroup parent) {
+    public View getView(final int position,View view,ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.list_item, null, true);
 
@@ -66,9 +67,29 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
 
         rowView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Perform action on click
-                Intent i = new Intent(context, JoinSession.class);
-                context.startActivity(i);
+
+                // ListView Clicked item index
+                int itemPosition   = position;
+
+                Log.v("CustomListAdapter", "HERE");
+                Log.v("CustomListAdapter", editable.get(position).toString());
+                System.out.println(editable.get(position));
+
+                if (editable.get(position) == false){
+                    // join session - user didn't make it
+                    Intent i = new Intent(context, JoinSession.class);
+                    i.putExtra("members",members.get(position).toString());
+                    String[] location = itemname.get(position).split("\n");
+                    i.putExtra("location", location[1]);
+                    context.startActivity(i);
+                }
+                else{
+                    // edit session - user made it
+                    Intent i = new Intent(context, EditSession.class);
+                    context.startActivity(i);
+                }
+
+
             }
         });
 

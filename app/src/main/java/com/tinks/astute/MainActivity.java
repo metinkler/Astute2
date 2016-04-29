@@ -1,35 +1,30 @@
 package com.tinks.astute;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-
-import android.view.Menu;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-
-import android.view.View;
-import android.widget.AdapterView.OnItemClickListener;
-import android.text.TextWatcher;
-import android.content.Intent;
-import java.util.ArrayList;
-import android.support.v4.widget.DrawerLayout;
-
-import android.os.PersistableBundle;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
-import android.content.res.Configuration;
-import android.widget.Button;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.Filter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 // going to be the newsfeed page
 
@@ -150,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (newLoc.equals("")){
             for (int i = 0; i < values.size();i++){
                 imgid.add(R.drawable.ic_launcher);
+                editable.add(false);
             }
         }
        // else{
@@ -185,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       //  }
 
         // Define a new Adapter
-        this.adapter = new CustomListAdapter(this, values, imgid, members, times);
+        this.adapter = new CustomListAdapter(this, values, imgid, members, times, editable);
 
         // Assign adapter to ListView
         listView.setAdapter(adapter);
@@ -201,12 +197,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // ListView Clicked item index
                 int itemPosition   = position;
 
+                Log.v("MainActivity", "HERE");
+                Log.v("MainActivity", editable.get(position).toString());
                 System.out.println(editable.get(position));
 
                 if (editable.get(position) == false){
                     // join session - user didn't make it
                     Intent i = new Intent(MainActivity.this, JoinSession.class);
-                    i.putExtra("members",members.get(position));
+                    i.putExtra("members",members.get(position).toString());
                     String[] location = values.get(position).split("\n");
                     i.putExtra("location", location[1]);
                     MainActivity.this.startActivity(i);
