@@ -24,16 +24,16 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
 
     private final Activity context;
     private final ArrayList<String> itemname;
-    private final Integer[] imgid;
-    private final Integer[] members;
-    private final Integer[] times;
+    private final ArrayList<Integer> imgid;
+    private final ArrayList<Integer> members;
+    private final ArrayList<Integer> times;
 
     ArrayList<String> objects = new ArrayList<String>();
     ArrayList<String> filteredList = new ArrayList<String>();
 
     String item = new String();
 
-    public CustomListAdapter(Activity context, ArrayList<String> itemname, Integer[] imgid, Integer[] members, Integer[] times) {
+    public CustomListAdapter(Activity context, ArrayList<String> itemname, ArrayList<Integer> imgid, ArrayList<Integer> members, ArrayList<Integer> times) {
         //super(context, R.layout.list_item, itemname);
         // TODO Auto-generated constructor stub
 
@@ -42,10 +42,6 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
         this.imgid=imgid;
         this.members=members;
         this.times=times;
-
-        for (int k = 0; k < itemname.size(); k++) {
-            System.out.println("Item: " + k + "Text: " + itemname.get(k));
-        }
 
         objects = itemname;
         filteredList = itemname;
@@ -62,11 +58,11 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 
         txtTitle.setText(filteredList.get(position));
-        imageView.setImageResource(imgid[position]);
+        imageView.setImageResource(imgid.get(position));
 
 
-        extratxt.setText(Integer.toString(members[position]));
-        time.setText(Integer.toString(times[position])+ " m");
+        extratxt.setText(Integer.toString(members.get(position)));
+        time.setText(Integer.toString(times.get(position))+ " m");
 
         rowView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

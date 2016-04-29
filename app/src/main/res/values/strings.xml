@@ -21,4 +21,21 @@
     <string name="compsci">CSCI</string>
     <string name="cs301">301</string>
     <string name="title_activity_join_session">JoinSession</string>
+    <string-array name="majors_array">
+        <item>CSCI</item>
+        <item>MATH</item>
+        <item>PSYCH</item>
+        <item>PHYS</item>
+        <item>ENGL</item>
+        <item>HIST</item>
+        <item>CHEM</item>
+        <item>KINES</item>
+        <item>CRWR</item>
+        <item>AMST</item>
+        <item>ART</item>
+        <item>SPAN</item>
+        <item>ITAL</item>
+        <item>FREN</item>
+        <item>CLCV</item>
+    </string-array>
 </resources>

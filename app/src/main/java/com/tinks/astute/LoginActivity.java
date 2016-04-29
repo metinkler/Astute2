@@ -155,6 +155,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void attemptLogin() {
 
         Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+        myIntent.putExtra("location","");
+
         LoginActivity.this.startActivity(myIntent);
 
     }
