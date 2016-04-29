@@ -354,6 +354,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             for(int i = 0; i < event_data.length; i++){
                 Log.v("myapp", " " + event_data[i]);
             }
+            String event_dept = event_data[0];
+            String event_course = event_data[1];
+            String event_loc = event_data[8];
+            String new_str = event_dept + event_course + "\n" + event_loc;
+            values.add(new_str);
+            members.add(1);
+            times.add(60);
+            editable.add(true);
+            imgid.add(R.drawable.ic_launcher);
+            adapter.notifyDataSetChanged();
         }
     }
 
