@@ -15,6 +15,11 @@
     </group>
     <group android:checkableBehavior="single" android:id="@+id/group2">
         <item
+            android:id="@+id/show_all"
+            android:orderInCategory="9999"
+            android:checkable="false"
+            android:title="Show All Classes"/>
+        <item
             android:id="@+id/add_class"
             android:orderInCategory="10000"
             android:checkable="false"
