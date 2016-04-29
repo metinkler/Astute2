@@ -6,8 +6,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 
+import android.view.Menu;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -26,6 +28,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.content.res.Configuration;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.TextView;
+import android.widget.LinearLayout;
 // going to be the newsfeed page
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -124,17 +129,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Defined Array values to show in ListView
         ArrayList<String> values = new ArrayList<String>();
-        values.add("CS 420\nSwem 140");
-        values.add("CS 241\nJones 214");
-        values.add("ENGL 212\nSwem Read & Relax");
-        values.add("KINES 110\nBlow 333");
-        values.add("MATH 211\nBlair 220");
-        values.add("ENGL 310\nSwem 163");
-        values.add("PSYCH 201\nSwem 264");
-        values.add("HIST 320\nBlow 331");
-        values.add("CHEM 103\nSwem 230");
-        values.add("PHYS 420\nSwem Read & Relax");
-        values.add("MATH 214\nTuck 110");
+        values.add("CSCI420\nSwem 140");
+        values.add("CSCI241\nJones 214");
+        values.add("ENGL212\nSwem Read & Relax");
+        values.add("KINES110\nBlow 333");
+        values.add("MATH211\nBlair 220");
+        values.add("ENGL310\nSwem 163");
+        values.add("PSYCH201\nSwem 264");
+        values.add("HIST320\nBlow 331");
+        values.add("CHEM103\nSwem 230");
+        values.add("PHYS420\nSwem Read & Relax");
+        values.add("MATH214\nTuck 110");
 
 
         // Define a new Adapter
@@ -280,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout= (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
-    private void itemSelection(int mSelectedId) {
+    private void itemSelection(int mSelectedId, MenuItem menuItem) {
 
         switch(mSelectedId){
 
@@ -290,8 +295,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivityForResult(i, 123);
                 break;
 
+            case R.id.show_all:
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                MainActivity.this.adapter.getFilter().filter("");
+                break;
+
             default:
                 mDrawerLayout.closeDrawer(GravityCompat.START);
+                CharSequence title = menuItem.getTitle();
+                MainActivity.this.adapter.getFilter().filter(title, new Filter.FilterListener() {
+                public void onFilterComplete(int count) {
+                    Log.d("log", "result count:" + count);
+                    if(count == 0){
+                        Toast.makeText(getApplicationContext(),"None Found :(",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            });
                 break;
         }
 
@@ -308,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         menuItem.setChecked(true);
         mSelectedId=menuItem.getItemId();
-        itemSelection(mSelectedId);
+        itemSelection(mSelectedId, menuItem);
         Log.v("app", String.valueOf(mSelectedId));
         return true;
     }
