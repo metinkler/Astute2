@@ -30,7 +30,7 @@ import android.content.res.Configuration;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.TextView;
-import android.widget.LinearLayout;
+
 // going to be the newsfeed page
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -52,55 +52,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView profile;
     ImageView sessions;
     ImageView add;
+    ImageView settings;
 
     // Search EditText
     EditText inputSearch;
-
-    //ArrayAdapter<String> adapter;
-
     CustomListAdapter adapter;
 
-    Integer[] imgid={
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-            R.drawable.ic_launcher,
-    };
+    String newLoc;
 
-    Integer[] members = {
-            1,
-            3,
-            4,
-            2,
-            8,
-            1,
-            5,
-            2,
-            3,
-            8,
-            5
-    };
-
-    Integer[] times = {
-            5,
-            15,
-            20,
-            23,
-            30,
-            32,
-            35,
-            39,
-            45,
-            50,
-            60,
-    };
+    final ArrayList<Boolean> editable = new ArrayList<Boolean>();
+    // Defined Array values to show in ListView
+    final ArrayList<String> values = new ArrayList<String>();
+    final ArrayList<Integer> imgid = new ArrayList<Integer>();
+    final ArrayList<Integer> members = new ArrayList<Integer>();
+    final ArrayList<Integer> times = new ArrayList<Integer>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,8 +75,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initView();
         Intent intent = getIntent();
 
+
+        newLoc = intent.getStringExtra("location");
+
         TextView text = (TextView) findViewById(R.id.empty);
         text.setVisibility(View.INVISIBLE);
+
 
         // Get objects from xml
         listView = (ListView) findViewById(R.id.list);
@@ -121,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile = (ImageView) findViewById(R.id.profile);
         sessions = (ImageView) findViewById(R.id.sessions);
         add = (ImageView) findViewById(R.id.add);
+        settings = (ImageView) findViewById(R.id.settings);
 
         //Start navigation drawer
         drawerToggle=new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -130,8 +100,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerToggle.syncState();
         //End navigation drawer
 
-        // Defined Array values to show in ListView
-        ArrayList<String> values = new ArrayList<String>();
+        if (!newLoc.equals("")){
+            values.add("CSCI415\n"+newLoc);
+            imgid.add(R.drawable.ic_launcher);
+            members.add(1);
+            times.add(1);
+            editable.add(true);
+        }
+
+        //adding times
+        times.add(4);
+        times.add(10);
+        times.add(15);
+        times.add(19);
+        times.add(25);
+        times.add(30);
+        times.add(33);
+        times.add(42);
+        times.add(48);
+        times.add(56);
+        times.add(60);
+
+        // adding members
+        members.add(1);
+        members.add(3);
+        members.add(4);
+        members.add(2);
+        members.add(8);
+        members.add(1);
+        members.add(5);
+        members.add(2);
+        members.add(3);
+        members.add(8);
+        members.add(5);
+
+        // adding strings
         values.add("CSCI420\nSwem 140");
         values.add("CSCI241\nJones 214");
         values.add("ENGL212\nSwem Read & Relax");
@@ -144,6 +147,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         values.add("PHYS420\nSwem Read & Relax");
         values.add("MATH214\nTuck 110");
 
+        if (newLoc.equals("")){
+            for (int i = 0; i < values.size();i++){
+                imgid.add(R.drawable.ic_launcher);
+            }
+        }
+        else{
+            for (int i = 0; i < values.size()-1;i++){
+                imgid.add(R.drawable.ic_launcher);
+            }
+        }
+
+        // adding times
+        /*
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        imgid.add(R.drawable.ic_launcher);
+        */
+
+        if (newLoc.equals("")){
+            for (int i = 0; i < values.size();i++){
+                editable.add(false);
+            }
+        }
+        else{
+            for (int i = 0; i < values.size()-1;i++){
+                editable.add(false);
+            }
+        }
 
         // Define a new Adapter
         this.adapter = new CustomListAdapter(this, values, imgid, members, times);
@@ -151,7 +190,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Assign adapter to ListView
         listView.setAdapter(adapter);
 
-        // ListView Item Click Listener
+        // Actual items in the news feed listen to click
+        // clicks take you to either join or edit pages
         listView.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -161,13 +201,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // ListView Clicked item index
                 int itemPosition   = position;
 
-                // ListView Clicked item value
-                String  itemValue    = listView.getItemAtPosition(position).toString();
+                System.out.println(editable.get(position));
 
-                // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
+                if (editable.get(position) == false){
+                    // join session - user didn't make it
+                    Intent i = new Intent(MainActivity.this, JoinSession.class);
+                    i.putExtra("members",members.get(position));
+                    String[] location = values.get(position).split("\n");
+                    i.putExtra("location", location[1]);
+                    MainActivity.this.startActivity(i);
+                }
+                else{
+                    // edit session - user made it
+                    Intent i = new Intent(MainActivity.this, EditSession.class);
+                    MainActivity.this.startActivity(i);
+                }
 
             }
 
@@ -178,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onClick(View v) {
-
                 mDrawerLayout.openDrawer(mDrawer);
 
             }
@@ -188,8 +235,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // start new activity here
-                // Perform action on click
-                Toast.makeText(getApplicationContext(),"adding class",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(MainActivity.this, CreateSession.class);
+                MainActivity.this.startActivity(i);
             }
         });
 
@@ -215,12 +262,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                Toast.makeText(getApplicationContext(),"Allows user to edit app settings",Toast.LENGTH_LONG).show();
+            }
+        });
+
         // filters news feed
         inputSearch.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
+                MainActivity.this.adapter.getFilter().filter(cs);
                 System.out.println(MainActivity.this.adapter);
                 MainActivity.this.adapter.getFilter().filter(cs,new Filter.FilterListener() {
                     public void onFilterComplete(int count) {
@@ -290,7 +345,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         text.setVisibility(View.INVISIBLE);
 
     }
-
 
     private void setToolbar() {
         toolbar= (Toolbar) findViewById(R.id.toolbar);
