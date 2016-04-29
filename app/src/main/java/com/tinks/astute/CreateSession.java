@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 
 import android.view.Menu;
@@ -74,6 +75,48 @@ public class CreateSession extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner_courseNum);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.csci_array, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(adapter1);
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.start_hour);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.hour_array, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adapter2);
+
+        Spinner spinner3 = (Spinner) findViewById(R.id.start_min);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.min_array, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(adapter3);
+
+        Spinner spinner4 = (Spinner) findViewById(R.id.start_ampm);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this,
+                R.array.am_pm, android.R.layout.simple_spinner_item);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner4.setAdapter(adapter4);
+
+        Spinner spinner5 = (Spinner) findViewById(R.id.end_hour);
+        ArrayAdapter<CharSequence> adapter5 = ArrayAdapter.createFromResource(this,
+                R.array.hour_array, android.R.layout.simple_spinner_item);
+        adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner5.setAdapter(adapter5);
+
+        Spinner spinner6 = (Spinner) findViewById(R.id.end_min);
+        ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
+                R.array.min_array, android.R.layout.simple_spinner_item);
+        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner6.setAdapter(adapter6);
+
+        Spinner spinner7 = (Spinner) findViewById(R.id.end_ampm);
+        ArrayAdapter<CharSequence> adapter7 = ArrayAdapter.createFromResource(this,
+                R.array.am_pm, android.R.layout.simple_spinner_item);
+        adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner7.setAdapter(adapter7);
+
         createSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,4 +131,6 @@ public class CreateSession extends AppCompatActivity {
         i.putExtra("location",newLoc);
         CreateSession.this.startActivity(i);
     }
+
+
 }
