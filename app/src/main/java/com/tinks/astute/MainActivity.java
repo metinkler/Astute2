@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     final ArrayList<Integer> imgid = new ArrayList<Integer>();
     final ArrayList<Integer> members = new ArrayList<Integer>();
     final ArrayList<Integer> times = new ArrayList<Integer>();
+    final ArrayList<String> descriptions = new ArrayList<>();
+    final ArrayList<String> timeStart = new ArrayList<>();
+    final ArrayList<String> timeEnd = new ArrayList<>();
+
+
+    public void updateMembers(int position, int num) {
+        members.set(position, num);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -131,16 +139,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // adding strings
         values.add("CSCI420\nSwem 140");
+        timeStart.add("2:00PM");
+        timeEnd.add("4:30PM");
         values.add("CSCI241\nJones 214");
+        timeStart.add("12:00PM");
+        timeEnd.add("2:00PM");
         values.add("ENGL212\nSwem Read & Relax");
+        timeStart.add("9:00AM");
+        timeEnd.add("11:00AM");
         values.add("KINES110\nBlow 333");
+        timeStart.add("11:30AM");
+        timeEnd.add("12:30PM");
         values.add("MATH211\nBlair 220");
+        timeStart.add("10:30AM");
+        timeEnd.add("12:00PM");
         values.add("ENGL310\nSwem 163");
+        timeStart.add("6:00PM");
+        timeEnd.add("11:00PM");
         values.add("PSYCH201\nSwem 264");
+        timeStart.add("2:30PM");
+        timeEnd.add("4:30PM");
         values.add("HIST320\nBlow 331");
+        timeStart.add("5:00PM");
+        timeEnd.add("8:00PM");
         values.add("CHEM103\nSwem 230");
+        timeStart.add("12:30PM");
+        timeEnd.add("2:00PM");
         values.add("PHYS420\nSwem Read & Relax");
+        timeStart.add("8:00AM");
+        timeEnd.add("9:00AM");
         values.add("MATH214\nTuck 110");
+        timeStart.add("6:30PM");
+        timeEnd.add("9:00PM");
+
+        descriptions.add("Studying for tomorrow's test.");
+        descriptions.add("Latest project.");
+        descriptions.add("Reading - come one, come all.");
+        descriptions.add("Prepping for physical activity.");
+        descriptions.add("Working with numbers.");
+        descriptions.add("Writing poems.");
+        descriptions.add("Reading about the brain.");
+        descriptions.add("History = mystery. Gotta prep for the test!");
+        descriptions.add("Playing with chemicals.");
+        descriptions.add("Dropping rocks.");
+        descriptions.add("We need all the help we can get.");
 
         if (newLoc.equals("")){
             for (int i = 0; i < values.size();i++){
@@ -181,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       //  }
 
         // Define a new Adapter
-        this.adapter = new CustomListAdapter(this, values, imgid, members, times, editable);
+        this.adapter = new CustomListAdapter(this, values, imgid, members, times, editable, descriptions, timeStart, timeEnd);
 
         // Assign adapter to ListView
         listView.setAdapter(adapter);

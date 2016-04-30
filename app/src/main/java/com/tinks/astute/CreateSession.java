@@ -2,38 +2,19 @@ package com.tinks.astute;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 
-import android.view.Menu;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 
 import android.view.View;
-import android.widget.AdapterView.OnItemClickListener;
 import android.text.TextWatcher;
 import android.content.Intent;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
-import java.util.ArrayList;
-import android.support.v4.widget.DrawerLayout;
 
-import android.os.PersistableBundle;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
-import android.content.res.Configuration;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.TextView;
 
 public class CreateSession extends AppCompatActivity {
 
@@ -57,7 +38,7 @@ public class CreateSession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_session);
 
-        location = (EditText) findViewById(R.id.location);
+        location = (EditText) findViewById(R.id.locationText);
         createSession = (Button) findViewById(R.id.createSession);
 
         location.addTextChangedListener(new TextWatcher() {
@@ -164,7 +145,7 @@ public class CreateSession extends AppCompatActivity {
         Spinner mySpinner8=(Spinner) findViewById(R.id.end_ampm);
         end_ampm= mySpinner8.getSelectedItem().toString();
 
-        EditText text1 = (EditText) findViewById(R.id.location);
+        EditText text1 = (EditText) findViewById(R.id.locationText);
         location_str = text1.getText().toString();
         if(location_str == null){
             location_str = " ";
