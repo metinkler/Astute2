@@ -6,4 +6,6 @@
     <color name="navColor">#FFFFFF</color>
     <color name="textGrey">#FF888888</color>
     <color name="textBlack">#000000</color>
+    <color name="buttonGrey">#EEEEEE</color>
+    <color name="astuteBlue">#CBE6FF</color>
 </resources>

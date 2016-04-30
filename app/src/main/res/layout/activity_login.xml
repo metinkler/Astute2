@@ -52,27 +52,37 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="150dp"
+            <LinearLayout
+                android:id="@+id/button_line"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:text="Sign in"
-                android:textStyle="bold"
-                android:layout_below="@+id/password"
-                android:layout_toStartOf="@+id/editText"
-                android:layout_marginTop="32dp" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_below="@+id/password">
 
-            <Button
-                android:id="@+id/email_register_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="180dp"
-                android:text="Register"
-                android:textStyle="bold"
-                android:layout_alignTop="@+id/email_sign_in_button"
-                android:layout_alignParentEnd="true" />
+                <Button
+                    android:id="@+id/email_sign_in_button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sign in"
+                    android:layout_gravity="center"
+                    android:layout_below="@+id/password"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/buttonGrey"
+                    android:layout_toStartOf="@+id/editText" />
+
+                <Button
+                    android:id="@+id/email_register_button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/buttonGrey"
+                    android:layout_alignParentEnd="true" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/password"
