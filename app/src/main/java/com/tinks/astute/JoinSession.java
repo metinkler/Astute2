@@ -58,7 +58,16 @@ public class JoinSession extends AppCompatActivity {
         System.out.println(location);
         System.out.println(members);
 
-        memberText.setText(members);
+        String memberString = "";
+
+        if (members.equals("1")) {
+            memberString = "1 person is already here!";
+        }
+        else {
+            memberString = members + " people are already here!";
+        }
+
+        memberText.setText(memberString);
         locationText.setText(location);
         classNameText.setText(className);
         timeStartText.setText(timeStart);
