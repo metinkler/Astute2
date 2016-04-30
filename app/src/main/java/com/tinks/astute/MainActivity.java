@@ -363,6 +363,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             imgid.add(R.drawable.ic_launcher);
             adapter.notifyDataSetChanged();
         }
+
+        if(requestCode == 125){
+            if(data.hasExtra("delete")){
+                Toast.makeText(getApplicationContext(),"User has requested event to be deleted. Delete not implemented.",Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"User has requested event to be edited. Edit not yet implemented.",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void setToolbar() {

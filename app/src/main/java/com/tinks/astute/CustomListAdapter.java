@@ -86,7 +86,7 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
                 else{
                     // edit session - user made it
                     Intent i = new Intent(context, EditSession.class);
-                    context.startActivity(i);
+                    context.startActivityForResult(i, 125);
                 }
 
 
