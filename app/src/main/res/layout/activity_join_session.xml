@@ -66,16 +66,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="num"
-            android:id="@+id/membersText"
-            android:layout_alignTop="@+id/textView4"
-            android:layout_toStartOf="@+id/textView4"
-            android:layout_alignEnd="@+id/textView5" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="location here"
             android:id="@+id/locationText"
             android:layout_alignTop="@+id/textView"
@@ -102,9 +92,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="people are already here!"
-            android:id="@+id/textView4"
+            android:id="@+id/membersText"
             android:layout_above="@+id/button"
-            android:layout_alignStart="@+id/timeStartText" />
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -122,7 +112,7 @@
             android:text="description here"
             android:id="@+id/descriptionText"
             android:layout_below="@+id/textView5"
-            android:layout_alignStart="@+id/textView5" />
+            android:layout_toEndOf="@+id/person" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -143,8 +133,8 @@
             android:padding="10dp"
             android:layout_height="30dp"
             android:background="@drawable/person"
-            android:layout_alignTop="@+id/membersText"
-            android:layout_alignStart="@+id/descriptionText" />
+            android:layout_alignBottom="@+id/membersText"
+            android:layout_alignStart="@+id/textView5" />
 
 
     </RelativeLayout>
